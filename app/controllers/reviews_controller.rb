@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
 
   def index
-    # country = params[:country]
-    # @reviews = Review.search(country)
-    # json_response(@quotes)
-    @reviews = Review.country
+    country = params[:country]
+    @reviews = Review.search(country)
     json_response(@reviews)
+    # @reviews = Review.country
+    # json_response(@reviews)
   end
 
   def show

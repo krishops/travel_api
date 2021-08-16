@@ -4,5 +4,6 @@ class Review < ApplicationRecord
   validates :country, presence: true
   validates :city, presence: true
 
-  scope :search, -> { where("country like ?", "%#{country}%")}
+  
+  scope :search, -> (country) { where("country like ?", "%#{country}%")}
 end
