@@ -50,3 +50,7 @@ You'll need to complete the following steps:
 * Next, run `docker-compose up --build`. This will rebuild the project.
 
 To read Docker's documentation on running projects using Ruby and Rails, see [Quickstart: Compose and Rails](https://docs.docker.com/compose/rails/).
+
+
+
+# scope :search, -> (city) { where("(city) ilike ?", "%#{city}%")}
