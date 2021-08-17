@@ -14,21 +14,21 @@
 Review.destroy_all
 
   review_list = [
-    ["Kristen", "test review 1", "Portland", "USA"],
-    ["Kristen", "test review 2", "Portland", "USA"],
-    ["Kristen", "test review 3", "Portland", "USA"],
-    ["Kristen", "test review 4", "Dallas", "USA"],
-    ["Kristen", "test review 5", "Dallas", "USA"],
-    ["Kristen", "test review 6", "Vancouver", "Canada"],
-    ["Kristen", "test review 7", "Vancouver", "Canada"],
-    ["Kristen", "test review 8", "Victoria", "Canada"],
-    ["Kristen", "test review 9", "Victoria", "Canada"],
-    ["Kristen", "test review 10", "Victoria", "Canada"],
-    ["Kristen", "test review 11", "Victoria", "Canada"],
+    ["Kristen", "test review 1", "Portland", "USA", "Kristen"],
+    ["Kristen", "test review 2", "Portland", "USA", "Kristen"],
+    ["Kristen", "test review 3", "Portland", "USA", "Kristen"],
+    ["Kristen", "test review 4", "Dallas", "USA", "Kristen"],
+    ["Araceli", "test review 5", "Dallas", "USA","Araceli"],
+    ["Araceli", "test review 6", "Vancouver", "Canada", "Araceli"],
+    ["Kristen", "test review 7", "Vancouver", "Canada", "Kristen"],
+    ["Kristen", "test review 8", "Victoria", "Canada", "Kristen"],
+    ["Kristen", "test review 9", "Victoria", "Canada", "Kristen"],
+    ["Kristen", "test review 10", "Victoria", "Canada", "Kristen"],
+    ["Kristen", "test review 11", "Victoria", "Canada", "Kristen"],
   ]
 
-  review_list.each do |author, content, city, country|
-    Review.create(author: author, content: content, city: city, country: country)
+  review_list.each do |author, content, city, country, user_name|
+    Review.create(author: author, content: content, city: city, country: country, user_name: user_name)
   # def generate_reviews
   #   20.times do |i|
   #     review = Review.create!(

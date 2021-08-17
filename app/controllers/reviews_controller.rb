@@ -1,9 +1,10 @@
 class ReviewsController < ApplicationController
-  # before_action except: [:update, :destroy] do 
-  #   unless  
-  #     flash[:alert] = 'You do not have access to this content.'
-  #     redirect_to product_path(Product.find(params[:product_id])) 
-  #     end
+  # before_action only: [:update, :destroy] do 
+  #   unless params[:user_name] == Review.find(params[:id]).user_name
+  #     render status: 401, json: {
+  #       message: "Unathorized content"
+  #     }
+  #     end 
   #   end
 
   def index
@@ -46,18 +47,32 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.update!(review_params)
-      render status: 200, json: {
-        message: "This review has been succesfully updated"
+    @user_name = params[:user_name]
+    if @user_name == @review.user_name
+      if @review.update!(review_params)
+        render status: 200, json: {
+          message: "This review has been succesfully updated"
+      }
+      end
+    else
+      render status: 401, json: {
+        message: "Unathorized content"
       }
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
-    if @review.destroy
-      render status: 200, json: {
-        message: "This review has been deleted"
+    @user_name = params[:user_name]
+    if @user_name == @review.user_name
+      if @review.destroy
+        render status: 200, json: {
+          message: "This review has been deleted"
+        }
+      end
+    else
+      render status: 401, json: {
+        message: "Unathorized content"
       }
     end
   end
@@ -68,6 +83,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.permit(:author, :content, :country, :city)
+    params.permit(:author, :content, :country, :city, :user_name)
   end
 end
