@@ -1,4 +1,10 @@
 class ReviewsController < ApplicationController
+  before_action except: [:update, :delete] do 
+    unless  
+      flash[:alert] = 'You do not have access to this content.'
+      redirect_to product_path(Product.find(params[:product_id])) 
+      end
+    end
 
   def index
     if country = params[:country]
@@ -16,8 +22,15 @@ class ReviewsController < ApplicationController
       json_response(@review_all)
     end
   end
+  
+  def most_popular
+    @most_popular = Review.most_reviews
+    # binding.pry
 
-  def show
+    json_response(@most_popular)
+  end  
+
+  def show 
     @review = Review.find(params[:id])
     json_response(@review)
   end

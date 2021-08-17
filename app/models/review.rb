@@ -13,13 +13,13 @@ class Review < ApplicationRecord
   scope :search, -> (city, country) { where("(city) ilike ? AND (country) ilike ?", "%#{city}%", "%#{country}%")}
 
 
-  # scope :most_reviews, -> {(
-  #   select("reviews.city, reviews.country, count(reviews.id) as reviews_count")
-  #   # .joins(:reviews)
-  #   .group("reviews.id")
-  #   .order("reviews_count DESC")
-  #   .limit(10)
-  # )}
+  scope :most_reviews, -> {(
+    select("reviews.city, reviews.country, count(*)").
+     # .joins(:reviews)
+    group("reviews.city, reviews.country").
+    order("count(*) DESC").
+    limit(5)
+  )}
 
 
 end
