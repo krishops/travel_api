@@ -3,6 +3,8 @@ class Review < ApplicationRecord
   validates :content, presence: true
   validates :country, presence: true
   validates :city, presence: true
+
+  paginates_per 50
   
   scope :city, -> (city) { where("(city) ilike ?", "%#{city}%")}
 
@@ -25,6 +27,4 @@ class Review < ApplicationRecord
   order("random()").
   limit(1)
   )}
-
-
 end

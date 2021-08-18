@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
       @reviews = Review.search(city, country)
       json_response(@reviews) 
     else
-      @review_all = Review.all
+      @review_all = Review.page(params[:page])
       json_response(@review_all)
     end
   end
