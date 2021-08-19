@@ -14,10 +14,15 @@ class Review < ApplicationRecord
 
 
   scope :most_reviews, -> {(
-    select("reviews.city, reviews.country, reviews.author, reviews.content, count(*)").
+    select("reviews.city, reviews.country, count(*)").
     group("reviews.city, reviews.country").
     order("count(*) DESC").
     limit(5)
+    
+    # select mode()("reviews.author, reviews.content, reviews.city, reviews.country, count(*)").
+    # group("reviews.author, reviews.content, reviews.city, reviews.country").
+    # order("count(*) DESC").
+    # limit(5)
   )}
   
   # scope :random, -> {order('RAND()')}

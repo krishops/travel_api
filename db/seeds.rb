@@ -16,7 +16,7 @@ class Seed
     200.times do |i|
       review = Review.create!(
         author: Faker::FunnyName.name,
-        content: Faker::ChuckNorris.fact,
+        content: Faker::ChuckNorris.unique.fact,
         country: Faker::Address.country,
         city: Faker::Address.city 
       )
