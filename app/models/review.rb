@@ -14,7 +14,7 @@ class Review < ApplicationRecord
 
 
   scope :most_reviews, -> {(
-    select("reviews.city, reviews.country, count(*)").
+    select("reviews.city, reviews.country, reviews.author, reviews.content, count(*)").
     group("reviews.city, reviews.country").
     order("count(*) DESC").
     limit(5)
